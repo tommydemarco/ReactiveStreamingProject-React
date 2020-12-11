@@ -13,7 +13,7 @@ const TheHeader = () => {
                 <nav className="header__navigation">
                     <ul className="header__list">
                         <li className="header__item">
-                            <Link to="/create">
+                            <Link to="/stream">
                                 Create Stream
                             </Link>
                         </li>
