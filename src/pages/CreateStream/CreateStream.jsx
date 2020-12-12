@@ -1,7 +1,7 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
-import { createStreamAsync } from '../../actions'
+import { createStream } from '../../actions'
 import './CreateStream.scss'
 
 let form =""
@@ -9,7 +9,7 @@ let form =""
 const CreateStream = ({ handleSubmit }) => {
 
     const onFormSubmit = (formData) => {
-        createStreamAsync(formData)
+        createStream(formData)
     }
 
     const renderInput = ({ input, label, meta }) => {
@@ -30,6 +30,7 @@ const CreateStream = ({ handleSubmit }) => {
                 <Field name="description" component={renderInput} label="Some other value"/>
                 <input type="submit"/>
             </form>
+            <button onClick={() => createStream("some data")}>Click to dispatch</button>
         </section>
     )
 }
@@ -47,4 +48,11 @@ const validate = formData => {
 }
 
 
-export default connect(null, { createStreamAsync })(reduxForm({ form: 'creation form', validate })(CreateStream))
+const CreateStreamComponent = reduxForm({ form: 'creation form', validate })(CreateStream)
+
+const mapDispatchToProps = dispatch => {
+    return {
+        createStream: (formData) => dispatch(createStream(formData))
+    }
+}
+export default connect(null, mapDispatchToProps)(CreateStreamComponent)
