@@ -2,6 +2,7 @@ import { Router, Switch, Route } from "react-router";
 import TheHeader from "./components/TheHeader/TheHeader";
 import HomePage from "./pages/HomePage/HomePage";
 import CreateStream from "./pages/CreateStream/CreateStream";
+import ListStream from "./pages/ListStream/ListStream";
 import "./App.scss";
 
 function App() {
@@ -10,10 +11,13 @@ function App() {
       <TheHeader />
       <div className="main-content">
         <Switch>
-          <Route match="/stream">
+          <Route exact path="/streams/list">
+            <ListStream />
+          </Route>
+          <Route exact path="/streams/new">
             <CreateStream />
           </Route>
-          <Route exact match="/">
+          <Route exact path="/">
             <HomePage />
           </Route>
         </Switch>

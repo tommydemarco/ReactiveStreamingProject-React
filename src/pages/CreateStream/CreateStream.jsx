@@ -25,15 +25,21 @@ class StreamCreate extends React.Component {
   };
 
   onSubmit = formValues => {
-    this.props.createStream(formValues);
+      try {
+        this.props.createStream(formValues, this.props.history);
+      } catch(e) {
+          console.log(e)
+      }
+    
   };
 
   render() {
+    console.log(this.props)
     return (
       <form
         onSubmit={this.props.handleSubmit(this.onSubmit)}
       >
-        <Field name="title" component={this.renderInput} label="Enter Title" />
+        <Field name="name" component={this.renderInput} label="Enter Title" />
         <Field
           name="description"
           component={this.renderInput}
