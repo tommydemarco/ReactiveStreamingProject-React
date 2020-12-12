@@ -9,17 +9,17 @@ const renderStreams = (streamsList, currentUser) => {
             <b>{stream.name}</b> <br/>
             {stream.description} <br/>
             {stream.userId}
-            {renderUserPermissions(currentUser, stream.user)}
+            {renderUserPermissions(currentUser, stream.user, stream.id)}
         </li>
     })
 }
 
-const renderUserPermissions = (id, streamUserId) => {
+const renderUserPermissions = (id, streamUserId, idOfStream) => {
     console.log("CURRENT USER IN THE FUNCTION", id)
     console.log(streamUserId)
     if (id === streamUserId) {
         return <div>
-            <Link>Edit</Link>
+            <Link to={"/streams/edit/" + idOfStream}>Edit</Link>
             <Link>Delete</Link>
         </div>
     }
