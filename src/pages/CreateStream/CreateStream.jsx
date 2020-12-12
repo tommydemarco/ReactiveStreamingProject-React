@@ -1,58 +1,70 @@
-import React from 'react'
-import { Field, reduxForm } from 'redux-form'
-import { connect } from 'react-redux'
-import { createStream } from '../../actions'
-import './CreateStream.scss'
+import React from 'react';
+import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { createStream } from '../../actions';
 
-let form =""
-
-const CreateStream = ({ handleSubmit }) => {
-
-    const onFormSubmit = (formData) => {
-        createStream(formData)
+class StreamCreate extends React.Component {
+  renderError({ error, touched }) {
+    if (touched && error) {
+      return (
+        <div>
+          <div>{error}</div>
+        </div>
+      );
     }
+  }
 
-    const renderInput = ({ input, label, meta }) => {
-        return (
-            <div className={form.form__group}>
-                <label>{label} </label>
-                <input {...input} />
-                {meta.error && <div>{meta.error}</div>}
-            </div>
-        )
-    } 
-
-
+  renderInput = ({ input, label, meta }) => {
     return (
-        <section className="create">
-            <form onSubmit={handleSubmit(onFormSubmit)} className={form.form}>
-                <Field name="title" unityMeasure="kWh" component={renderInput} label="Stream name" />
-                <Field name="description" component={renderInput} label="Some other value"/>
-                <input type="submit"/>
-            </form>
-            <button onClick={() => createStream("some data")}>Click to dispatch</button>
-        </section>
-    )
+      <div>
+        <label>{label}</label>
+        <input {...input} autoComplete="off" />
+        {this.renderError(meta)}
+      </div>
+    );
+  };
+
+  onSubmit = formValues => {
+    this.props.createStream(formValues);
+  };
+
+  render() {
+    return (
+      <form
+        onSubmit={this.props.handleSubmit(this.onSubmit)}
+      >
+        <Field name="title" component={this.renderInput} label="Enter Title" />
+        <Field
+          name="description"
+          component={this.renderInput}
+          label="Enter Description"
+        />
+        <button>Submit</button>
+      </form>
+    );
+  }
 }
 
-const validate = formData => {
-    const error = {}
-    
-    if(!formData.title) {
-        error.title = "You must enter a name"
-    }
-    if(!formData.description) {
-        error.description = "You must enter a description"
-    }
-    return error
-}
+const validate = formValues => {
+  const errors = {};
 
+  if (!formValues.title) {
+    errors.title = 'You must enter a title';
+  }
 
-const CreateStreamComponent = reduxForm({ form: 'creation form', validate })(CreateStream)
+  if (!formValues.description) {
+    errors.description = 'You must enter a description';
+  }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        createStream: (formData) => dispatch(createStream(formData))
-    }
-}
-export default connect(null, mapDispatchToProps)(CreateStreamComponent)
+  return errors;
+};
+
+const formWrapped = reduxForm({
+  form: 'streamCreate',
+  validate
+})(StreamCreate);
+
+export default connect(
+  null,
+  { createStream }
+)(formWrapped);
