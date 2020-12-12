@@ -1,10 +1,16 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
+import { connect } from 'react-redux'
+import { createStreamAsync } from '../../actions'
 import './CreateStream.scss'
 
 let form =""
 
 const CreateStream = ({ handleSubmit }) => {
+
+    const onFormSubmit = (formData) => {
+        createStreamAsync(formData)
+    }
 
     const renderInput = ({ input, label, meta }) => {
         return (
@@ -16,9 +22,6 @@ const CreateStream = ({ handleSubmit }) => {
         )
     } 
 
-    const onFormSubmit = (formData) => {
-        console.log(formData)
-    }
 
     return (
         <section className="create">
@@ -33,6 +36,7 @@ const CreateStream = ({ handleSubmit }) => {
 
 const validate = formData => {
     const error = {}
+    
     if(!formData.title) {
         error.title = "You must enter a name"
     }
@@ -42,4 +46,5 @@ const validate = formData => {
     return error
 }
 
-export default reduxForm({ form: 'creation form', validate })(CreateStream)
+
+export default connect(null, { createStreamAsync })(reduxForm({ form: 'creation form', validate })(CreateStream))
