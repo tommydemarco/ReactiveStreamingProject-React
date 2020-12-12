@@ -13,8 +13,11 @@ const TheHeader = () => {
                 <nav className="header__navigation">
                     <ul className="header__list">
                         <li className="header__item">
-                            <Link to="/stream">
+                            <Link to="/streams/new">
                                 Create Stream
+                            </Link>
+                            <Link to="/streams/list">
+                                Streams List
                             </Link>
                         </li>
                         <li>

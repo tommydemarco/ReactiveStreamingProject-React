@@ -1,60 +1,71 @@
-import React, { useEffect, useState } from 'react'
-import { connect } from 'react-redux'
-import { signIn, signOut } from '../../actions'
-import Button from '../Button/Button'
+import React from 'react';
+import { connect } from 'react-redux';
+import { signIn, signOut } from '../../actions';
 
-const GoogleAuth = ({ isUserSignedIn, signIn, signOut }) => {
-
-    const [ authentication, setAuthentication ] = useState(null)
-    const [ debouncerAuth, setDebouncerAuth ] = useState(null)
-
-    useEffect(() => {
-        window.gapi.load('client:auth2', () => {
-            window.gapi.client.init({
-                clientId:
-                '1035668224616-fcnh1tob5l1qh03uuaqkjcv9c7hscd78.apps.googleusercontent.com',
-                scope: 'email'
-            }).then(() => {
-                if(!authentication) {
-                    setAuthentication(window.gapi.auth2.getAuthInstance())
-                } else {
-                    authentication.isSignedIn.listen((isSignedIn) => {
-                        setDebouncerAuth(isSignedIn)
-                    });
-                }
-            })  
-            console.log("Main useEffect called")        
+class GoogleAuth extends React.Component {
+  componentDidMount() {
+    window.gapi.load('client:auth2', () => {
+      window.gapi.client
+        .init({
+          clientId:
+            '797401886567-9cumct9mrt3v2va409rasa7fa6fq02hh.apps.googleusercontent.com',
+          scope: 'email'
         })
-    }, [authentication, setAuthentication])
+        .then(() => {
+          this.auth = window.gapi.auth2.getAuthInstance();
 
-    useEffect(() => {
-        if(debouncerAuth === null) {
-            return
-        }
-        if (debouncerAuth) {
-            signIn();
-        } else {
-            signOut();
-        }
-        console.log("Secondary unseEffect called")  
-    }, [debouncerAuth, signIn, signOut])
+          this.onAuthChange(this.auth.isSignedIn.get());
+          this.auth.isSignedIn.listen(this.onAuthChange);
+        });
+    });
+  }
 
-    const renderButton = () => {
-        if(isUserSignedIn) {
-            return <Button functionOnClick={() => authentication.signOut()}>Sign out</Button>
-        } else {
-            return <Button functionOnClick={() => authentication.signIn()}>Sign in</Button>
-        }
+  onAuthChange = isSignedIn => {
+    if (isSignedIn) {
+      this.props.signIn(this.auth.currentUser.get().getId());
+    } else {
+      this.props.signOut();
     }
-    return (
-        <>
-            {renderButton()}
-        </>
-    )
+  };
+
+  onSignInClick = () => {
+    this.auth.signIn();
+  };
+
+  onSignOutClick = () => {
+    this.auth.signOut();
+  };
+
+  renderAuthButton() {
+    if (this.props.isSignedIn === null) {
+      return null;
+    } else if (this.props.isSignedIn) {
+      return (
+        <button onClick={this.onSignOutClick} className="ui red google button">
+          <i className="google icon" />
+          Sign Out
+        </button>
+      );
+    } else {
+      return (
+        <button onClick={this.onSignInClick} className="ui red google button">
+          <i className="google icon" />
+          Sign In with Google
+        </button>
+      );
+    }
+  }
+
+  render() {
+    return <div>{this.renderAuthButton()}</div>;
+  }
 }
 
 const mapStateToProps = state => {
-    return { isUserSignedIn: state.auth.isSignedIn } 
-}
+  return { isSignedIn: state.auth.isSignedIn };
+};
 
-export default connect(mapStateToProps, { signIn, signOut })(GoogleAuth)
+export default connect(
+  mapStateToProps,
+  { signIn, signOut }
+)(GoogleAuth);
