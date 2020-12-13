@@ -35,8 +35,15 @@ class StreamForm extends React.Component {
         className="streamform"
         onSubmit={this.props.handleSubmit(this.onSubmit)}
       >
-        <Field name="name" component={this.renderInput} label="Enter Title" type="text" required/>
+        <Field 
+          name="name" 
+          initialValue={this.props.initialValues ? this.props.initialValues.streamName : ''}
+          component={this.renderInput} 
+          label="Enter Title" 
+          type="text" 
+          required/>
         <Field
+          initialValue={this.props.initialValues ? this.props.initialValues.streamDescription : ''}
           name="description"
           component={this.renderInput}
           label="Enter Description"

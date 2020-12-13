@@ -17,13 +17,15 @@ body {
   min-height: 70vh;
   background-color: #dfe4ea;
   padding-top: 4rem;
-  padding-bottom: 4rem;
+  padding-bottom: 5rem;
 }
 
 .page {
   width: 110rem;
   max-width: 90%;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 
 a {

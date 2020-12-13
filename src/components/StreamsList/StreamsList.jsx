@@ -37,8 +37,8 @@ export const SingleStream = ({ stream, currentUser }) => {
 export const UserPermissions = ({ id }) => {
     return (
         <div className="streamslist__permissions">
-            <Button option="link" to={"/streams/edit" + id} additionalClass="primary">Edit Stream</Button>
-            <Button option="link" to={"/streams/delete" + id} additionalClass="danger">Delete Stream</Button>
+            <Button option="link" to={"/streams/edit/" + id} additionalClass="primary">Edit Stream</Button>
+            <Button option="link" to={"/streams/delete/" + id} additionalClass="danger">Delete Stream</Button>
         </div>
     )
 }

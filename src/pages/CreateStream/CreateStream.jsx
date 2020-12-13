@@ -8,7 +8,7 @@ const CreateStream = ({ createStream }) => {
 
     return (
         <section className="page create">
-             <PageHeadings title="Create Stream" subtitle="Here you can see a list of all streams" />
+            <PageHeadings title="Create Stream" subtitle="Here you can see a list of all streams" />
             <StreamForm onSubmitForm={createStream} />
         </section>
     )

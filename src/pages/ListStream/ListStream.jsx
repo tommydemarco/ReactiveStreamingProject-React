@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchStreams } from '../../actions'
+import Button from '../../components/Button/Button'
 import PageHeadings from '../../components/PageHeadings/PageHeadings'
 import StreamsList from '../../components/StreamsList/StreamsList'
 
@@ -17,7 +18,7 @@ const ListStream = ({ fetchStreams, streams, currentUser, isUserSignedIn }) => {
             <PageHeadings title="Streams List" subtitle="Here you can fincd a list of all the streams" />
             {!streams && "loading..."}
             {streams && <StreamsList streamList={streams} currentUser={currentUser} />}
-            {isUserSignedIn && <Link>Create Stream</Link> }
+            {isUserSignedIn && <Button option="link" to="/streams/new" additionalClass="primary">Create Stream</Button> }
         </section>
     )
 }
