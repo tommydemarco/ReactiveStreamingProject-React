@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchStreams, deleteStream } from '../../actions'
 import Button from '../../components/Button/Button'
 import PageHeadings from '../../components/PageHeadings/PageHeadings'
 import StreamsList from '../../components/StreamsList/StreamsList'
 import ModalWindow from '../../components/ModalWindow/ModalWindow'
-import { set } from 'lodash'
 
 
 const ListStream = ({ fetchStreams, deleteStream, streams, currentUser, isUserSignedIn }) => {

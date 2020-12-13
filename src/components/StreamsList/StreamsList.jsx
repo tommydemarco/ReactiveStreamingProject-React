@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Button from '../Button/Button'
 import './StreamsList.scss'
 
@@ -26,7 +27,9 @@ export const SingleStream = ({ stream, currentUser, setModal }) => {
                 <i className="fa fa-camera streamslist__icon"></i>
             </div>
             <div className="streamslist__description">
-            <b className="streamslist__name">{name}</b>
+            <Link to={"/streams/" + id}>
+                <b className="streamslist__name">{name}</b>
+            </Link>
             {description}
             </div>
             {isFromUser && <UserPermissions id={id} setModal={setModal} />}

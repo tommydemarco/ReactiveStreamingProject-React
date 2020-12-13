@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import CreateStream from "./pages/CreateStream/CreateStream";
 import ListStream from "./pages/ListStream/ListStream";
 import EditStream from "./pages/EditStream/EditStream";
+import SingleStream from "./pages/SingleStream/SingleStream";
 
 import "./App.scss";
 
@@ -21,6 +22,9 @@ function App() {
           </Route>
           <Route exact path="/streams/new">
             <CreateStream />
+          </Route>
+          <Route exact path="/streams/:id">
+            <SingleStream />
           </Route>
           <Route exact path="/streams/edit/:id">
             <EditStream />
