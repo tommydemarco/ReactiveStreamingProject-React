@@ -2,22 +2,22 @@ import React from 'react'
 import Button from '../Button/Button'
 import './StreamsList.scss'
 
-const renderStreams = (streamList, currentUser) => {
+const renderStreams = (streamList, currentUser, setModal) => {
     return streamList.map(stream => {
-        return <SingleStream key={stream.id} stream={stream} currentUser={currentUser} />
+        return <SingleStream key={stream.id} stream={stream} currentUser={currentUser} setModal={setModal} />
     })
 }
 
-const StreamsList = ({ streamList, currentUser }) => {
+const StreamsList = ({ streamList, currentUser, setModal }) => {
     console.log(streamList)
     return (
         <ul className="streamslist">
-            {renderStreams(streamList, currentUser)}
+            {renderStreams(streamList, currentUser, setModal)}
         </ul>
     )
 }
 
-export const SingleStream = ({ stream, currentUser }) => {
+export const SingleStream = ({ stream, currentUser, setModal }) => {
     const { name, description, id, user } = stream
     const isFromUser = currentUser === user
     return (
@@ -29,16 +29,19 @@ export const SingleStream = ({ stream, currentUser }) => {
             <b className="streamslist__name">{name}</b>
             {description}
             </div>
-            {isFromUser && <UserPermissions id={id} />}
+            {isFromUser && <UserPermissions id={id} setModal={setModal} />}
         </li>
     )
 }
 
-export const UserPermissions = ({ id }) => {
+export const UserPermissions = ({ id, setModal }) => {
     return (
         <div className="streamslist__permissions">
             <Button option="link" to={"/streams/edit/" + id} additionalClass="primary">Edit Stream</Button>
-            <Button option="link" to={"/streams/delete/" + id} additionalClass="danger">Delete Stream</Button>
+            <Button type="button" functionOnClick={() => {
+                setModal({ show: true, id: id })
+            }
+            } additionalClass="danger">Delete Stream</Button>
         </div>
     )
 }
