@@ -12,7 +12,7 @@ const EditStream = ({ fetchStream, stream, match}) => {
     }, [fetchStreamMemo])
 
     return (
-        <div>
+        <div className="page">
             {
                 stream && <div>{stream.description}</div>
             }

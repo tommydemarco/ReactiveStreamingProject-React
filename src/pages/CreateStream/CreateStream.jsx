@@ -6,7 +6,7 @@ import StreamForm from '../../components/StreamForm/StreamForm'
 const CreateStream = ({ createStream }) => {
 
     return (
-        <div>
+        <div className="page">
             <StreamForm onSubmitForm={createStream} />
         </div>
     )

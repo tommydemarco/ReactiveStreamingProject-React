@@ -1,5 +1,6 @@
 import { Router, Switch, Route } from "react-router";
 import TheHeader from "./components/TheHeader/TheHeader";
+import TheFooter from "./components/TheFooter/TheFooter";
 import HomePage from "./pages/HomePage/HomePage";
 import CreateStream from "./pages/CreateStream/CreateStream";
 import ListStream from "./pages/ListStream/ListStream";
@@ -27,6 +28,7 @@ function App() {
           </Route>
         </Switch>
       </div>
+      <TheFooter />
     </>
   );
 }

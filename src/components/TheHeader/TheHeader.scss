@@ -1,0 +1,45 @@
+.header {
+  padding: 2rem 0 2rem 0;
+  background: #1e272e;
+  color: white;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  border-bottom: 5px solid #ee5a24;
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    width: 120rem;
+    max-width: 90%;
+    align-items: center;
+  }
+  &__logo {
+    font-family: "Neucha", cursive;
+    color: white;
+    font-size: 4rem;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      color: #ced6e0;
+    }
+  }
+  &__navigation {
+  }
+  &__list {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  &__item {
+    margin-left: 1.5rem;
+  }
+  &__link {
+    color: white;
+    display: block;
+    backface-visibility: hidden;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      color: #ced6e0;
+    }
+  }
+}

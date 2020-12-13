@@ -24,7 +24,7 @@ class StreamForm extends React.Component {
   };
 
   onSubmit = formValues => {
-    this.props.onSubmitForm ? this.props.onSubmitForm(formValues, this.props.history) : null
+    this.props.onSubmitForm(formValues, this.props.history)
   };
 
   render() {
