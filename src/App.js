@@ -1,6 +1,7 @@
 import { Router, Switch, Route } from "react-router";
 import TheHeader from "./components/TheHeader/TheHeader";
 import TheFooter from "./components/TheFooter/TheFooter";
+import SideContacts from "./components/SideContacts/SideContacts";
 import HomePage from "./pages/HomePage/HomePage";
 import CreateStream from "./pages/CreateStream/CreateStream";
 import ListStream from "./pages/ListStream/ListStream";
@@ -12,6 +13,7 @@ function App() {
   return (
     <>
       <TheHeader />
+      <SideContacts />
       <div className="main-content">
         <Switch>
           <Route exact path="/streams/list">

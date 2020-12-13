@@ -1,6 +1,8 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom'
 import { Field, reduxForm } from 'redux-form';
+import Button from '../Button/Button'
+import './StreamForm.scss'
 
 class StreamForm extends React.Component {
   renderError({ error, touched }) {
@@ -13,11 +15,11 @@ class StreamForm extends React.Component {
     }
   }
 
-  renderInput = ({ input, label, meta }) => {
+  renderInput = ({ input, label, meta, required, type }) => {
     return (
-      <div>
-        <label>{label}</label>
-        <input {...input} autoComplete="off" />
+      <div className="streamform__group">
+        <label className="streamform__label">{label}</label>
+        <input className="streamform__input" {...input} autoComplete="off" required={required} type={type}/>
         {this.renderError(meta)}
       </div>
     );
@@ -30,37 +32,25 @@ class StreamForm extends React.Component {
   render() {
     return (
       <form
+        className="streamform"
         onSubmit={this.props.handleSubmit(this.onSubmit)}
       >
-        <Field name="name" component={this.renderInput} label="Enter Title" />
+        <Field name="name" component={this.renderInput} label="Enter Title" type="text" required/>
         <Field
           name="description"
           component={this.renderInput}
           label="Enter Description"
+          type="text"
+          required
         />
-        <button>Submit</button>
+        <Button type="submit">Submit</Button>
       </form>
     );
   }
 }
 
-const validate = formValues => {
-  const errors = {};
-
-  if (!formValues.title) {
-    errors.title = 'You must enter a title';
-  }
-
-  if (!formValues.description) {
-    errors.description = 'You must enter a description';
-  }
-
-  return errors;
-};
-
 export default reduxForm({
   form: 'streamForm',
-  validate
 })(withRouter(StreamForm));
 
 

@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import styles from './Button.module.scss'
+import './Button.scss'
 
 const Button = ({option = 'button', functionOnClick, type = 'button', additionalClass = '', to = "/", children}) => {
 
     
 
-    const classes = styles.button + ' ' + additionalClass
+    const classes = "button" + ' ' + additionalClass
 
     if(option === 'button') {
         return (

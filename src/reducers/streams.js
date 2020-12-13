@@ -7,9 +7,7 @@ import {
   EDIT_STREAM,
 } from "../actions/types";
 
-const INITIAL_STATE = {
-  streams: {},
-};
+const INITIAL_STATE = {};
 
 const streamsReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {

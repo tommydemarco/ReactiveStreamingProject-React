@@ -2,28 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchStreams } from '../../actions'
+import PageHeadings from '../../components/PageHeadings/PageHeadings'
+import StreamsList from '../../components/StreamsList/StreamsList'
 
-const renderStreams = (streamsList, currentUser) => {
-    return streamsList.map(stream => {
-        return <li key={stream.id}>
-            <b>{stream.name}</b> <br/>
-            {stream.description} <br/>
-            {stream.userId}
-            {renderUserPermissions(currentUser, stream.user, stream.id)}
-        </li>
-    })
-}
-
-const renderUserPermissions = (id, streamUserId, idOfStream) => {
-    console.log("CURRENT USER IN THE FUNCTION", id)
-    console.log(streamUserId)
-    if (id === streamUserId) {
-        return <div>
-            <Link to={"/streams/edit/" + idOfStream}>Edit</Link>
-            <Link>Delete</Link>
-        </div>
-    }
-}
 
 const ListStream = ({ fetchStreams, streams, currentUser, isUserSignedIn }) => {
 
@@ -32,13 +13,12 @@ const ListStream = ({ fetchStreams, streams, currentUser, isUserSignedIn }) => {
     }, [])
 
     return (
-        <div>
+        <section className="page list">
+            <PageHeadings title="Streams List" subtitle="Here you can fincd a list of all the streams" />
             {!streams && "loading..."}
-            {streams && <ul>
-                {renderStreams(streams, currentUser)}
-            </ul>}
+            {streams && <StreamsList streamList={streams} currentUser={currentUser} />}
             {isUserSignedIn && <Link>Create Stream</Link> }
-        </div>
+        </section>
     )
 }
 

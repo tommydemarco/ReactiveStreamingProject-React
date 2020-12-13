@@ -1,10 +1,11 @@
 import React from 'react'
+import PageHeadings from '../../components/PageHeadings/PageHeadings'
 import './HomePage.scss'
 
 const HomePage = () => {
     return (
         <section className="page home">
-            <h1>Home Page</h1>
+            <PageHeadings title="Home Page" subtitle="Here you can see a list of all streams" />
         </section>
     )
 }

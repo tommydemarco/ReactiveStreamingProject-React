@@ -9,9 +9,22 @@
   cursor: pointer;
   font-size: 1.8rem;
   font-family: "Roboto", sans-serif;
+  &.primary {
+    background-color: #2980b9;
+    &:hover,
+    &:focus {
+      background-color: lighten(#2980b9, 10%);
+    }
+  }
+  &.danger {
+    background-color: #c0392b;
+    &:hover,
+    &:focus {
+      background-color: lighten(#c0392b, 10%);
+    }
+  }
   &:hover,
-  &:focus,
-  &:active {
+  &:focus {
     background-color: lighten(#ee5a24, 10%);
   }
 }

@@ -1,0 +1,25 @@
+.contacts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  right: 0;
+  top: 30vh;
+  background-color: #2f3542;
+  border: 5px solid #ee5a24;
+  border-right: none;
+  padding: 1rem;
+  padding-right: 1.2rem;
+  z-index: 2;
+  cursor: pointer;
+  &__item {
+    padding-bottom: 1rem;
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+  &__icon {
+    font-size: 2rem;
+    color: #ee5a24;
+  }
+}

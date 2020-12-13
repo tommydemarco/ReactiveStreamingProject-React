@@ -1,0 +1,46 @@
+.streamslist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  &__item {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #2f3542;
+    &:last-child {
+      margin-bottom: none;
+      border-bottom: none;
+    }
+  }
+  &__visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2rem;
+  }
+  &__icon {
+    color: #2f3542;
+    font-size: 3rem;
+  }
+  &__description {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  &__name {
+    margin-bottom: 0.5rem;
+  }
+  &__permissions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: stretch;
+    margin-left: auto;
+    & > *:last-child {
+      margin-left: 1rem;
+    }
+  }
+}
