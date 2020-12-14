@@ -1,4 +1,5 @@
-import { Router, Switch, Route } from "react-router";
+import React from "react";
+import { Switch, Route } from "react-router";
 import TheHeader from "./components/TheHeader/TheHeader";
 import TheFooter from "./components/TheFooter/TheFooter";
 import SideContacts from "./components/SideContacts/SideContacts";
