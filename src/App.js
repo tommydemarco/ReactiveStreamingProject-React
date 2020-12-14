@@ -12,7 +12,7 @@ import "./App.scss";
 
 function App() {
   return (
-    <>
+    <React.Fragment>
       <TheHeader />
       <SideContacts />
       <div className="main-content">
@@ -35,7 +35,7 @@ function App() {
         </Switch>
       </div>
       <TheFooter />
-    </>
+    </React.Fragment>
   );
 }
 

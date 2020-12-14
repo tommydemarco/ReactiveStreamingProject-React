@@ -4,8 +4,6 @@ import './Button.scss'
 
 const Button = ({option = 'button', functionOnClick, type = 'button', additionalClass = '', to = "/", children}) => {
 
-    
-
     const classes = "button" + ' ' + additionalClass
 
     if(option === 'button') {
@@ -20,8 +18,7 @@ const Button = ({option = 'button', functionOnClick, type = 'button', additional
                 {children}
             </Link>
         )
-    }
-    
+    }  
 }
 
 export default Button
